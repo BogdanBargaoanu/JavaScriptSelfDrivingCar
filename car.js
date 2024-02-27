@@ -5,14 +5,18 @@ class Car{
         this.width = width;
         this.height = height;
         this.speed = 0;
-        this.acceleration = 0.1;
+        this.acceleration = 0.4;
         this.maxSpeed = 3;
-        this.friction = 0.04;
+        this.friction = 0.05;
         this.angle = 0;
         this.controls = new Controls();
     }
 
 update() {
+    this.#move();
+}
+
+#move() {
     if(this.controls.forward){
         this.speed += this.acceleration;
     }

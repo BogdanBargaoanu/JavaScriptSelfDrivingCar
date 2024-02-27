@@ -5,7 +5,7 @@ body {
     text-align: center;
 }
 #mainCanvas {
-    background: white;
+    background: lightgrey;
     margin: 0 auto;
     display: block;
 }
