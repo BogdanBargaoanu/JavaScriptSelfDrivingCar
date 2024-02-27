@@ -8,20 +8,30 @@ class Sensor {
         this.readings = [];
     }
 
-    update(roadBorders) {
+    update(roadBorders, traffic) {
         this.#castRays();
         this.readings = [];
         for (let i = 0; i < this.rays.length; i++) {
-            this.readings.push(this.#getRayReading(this.rays[i], roadBorders));
+            this.readings.push(this.#getRayReading(this.rays[i], roadBorders, traffic));
         }
     }
 
-    #getRayReading(ray, roadBorders) {
+    #getRayReading(ray, roadBorders, traffic) {
         const intersections = [];
         for (let i = 0; i < roadBorders.length; i++) {
-            const intersection = getIntersection(ray[0],ray[1], roadBorders[i][0], roadBorders[i][1]);
+            const intersection = getIntersection(ray[0], ray[1], roadBorders[i][0], roadBorders[i][1]);
             if (intersection) {
                 intersections.push(intersection);
+            }
+        }
+
+        for (let i = 0; i < traffic.length; i++) {
+            const poly = traffic[i].polygon;
+            for (let j = 0; j < poly.length; j++) {
+                const intersection = getIntersection(ray[0], ray[1], poly[j], poly[(j + 1) % poly.length]);
+                if (intersection) {
+                    intersections.push(intersection);
+                }
             }
         }
 
@@ -29,9 +39,9 @@ class Sensor {
             return null;
         }
         else {
-            const offsets = intersections.map(e=>e.offset);
+            const offsets = intersections.map(e => e.offset);
             const minOffset = Math.min(...offsets);
-            return intersections.find(e=>e.offset == minOffset);
+            return intersections.find(e => e.offset == minOffset);
         }
     }
 
@@ -48,7 +58,7 @@ class Sensor {
     draw(ctx) {
         for (let i = 0; i < this.rays.length; i++) {
             let end = this.rays[i][1];
-            if(this.readings[i]){
+            if (this.readings[i]) {
                 end = this.readings[i];
             }
             ctx.beginPath();
@@ -60,7 +70,7 @@ class Sensor {
 
             ctx.beginPath();
             ctx.lineWidth = 2;
-            ctx.strokeStyle = "black";
+            ctx.strokeStyle = "red";
             ctx.moveTo(this.rays[i][1].x, this.rays[i][1].y);
             ctx.lineTo(end.x, end.y);
             ctx.stroke();
