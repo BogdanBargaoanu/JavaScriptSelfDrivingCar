@@ -29,8 +29,8 @@ class Car {
             this.sensor.update(roadBorders, traffic);
             const offsets = this.sensor.readings.map(e => e == null ? 0 : 1 - e.offset);
             const outputs = NeuralNetwork.feedForward(offsets, this.brain);
-            
-            if(this.useBrain) {
+
+            if (this.useBrain) {
                 this.controls.forward = outputs[0];
                 this.controls.left = outputs[1];
                 this.controls.right = outputs[2];
@@ -107,6 +107,33 @@ class Car {
                 ctx.lineTo(this.polygon[i].x, this.polygon[i].y);
             }
             ctx.fill();
+            ctx.fillStyle = "white";
+
+            // Save the current context
+            ctx.save();
+
+            // Translate to the car's center
+            ctx.translate(this.x, this.y);
+
+            // Rotate the context by the car's angle
+            ctx.rotate(-this.angle);
+
+            // Draw the headlights of the car
+            const headlightWidth = this.width / 4;
+            const headlightHeight = this.height / 4;
+            const headlightY = -this.height / 2 - headlightHeight / 2 + 4;
+            ctx.fillRect(-this.width / 2 - headlightWidth / 2 + 4, headlightY, headlightWidth, headlightHeight);
+            ctx.fillRect(this.width / 2 - headlightWidth / 2 - 4, headlightY, headlightWidth, headlightHeight);
+
+            ctx.fillStyle = "red";
+
+            // Draw the stoplights of the car
+            const stoplightWidth = this.width / 4;
+            const stoplightHeight = this.height / 4;
+            const stoplightY = this.height / 2 - stoplightHeight / 2 - 4;
+            ctx.fillRect(-this.width / 2 - stoplightWidth / 2 + 4, stoplightY, stoplightWidth, stoplightHeight);
+            ctx.fillRect(this.width / 2 - stoplightWidth / 2 - 4, stoplightY, stoplightWidth, stoplightHeight);
+            ctx.restore();
             if (this.sensor && drawSensors) {
                 this.sensor.draw(ctx);
             }

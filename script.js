@@ -12,7 +12,10 @@ const N = 500;
 const cars = generateCars(N);
 const traffic = [new Car(road.getLaneCenter(1), -200, 30, 50, "DUMMY", 2), new Car(road.getLaneCenter(0), -300, 30, 50, "DUMMY", 2),
  new Car(road.getLaneCenter(2), -500, 30, 50, "DUMMY", 2),
- new Car(road.getLaneCenter(0), -550, 30, 50, "DUMMY", 2)];
+ new Car(road.getLaneCenter(0), -550, 30, 50, "DUMMY", 2),
+ new Car(road.getLaneCenter(1), -700, 30, 50, "DUMMY", 2),
+ new Car(road.getLaneCenter(2), -950, 30, 50, "DUMMY", 2),
+ new Car(road.getLaneCenter(0), -1100, 30, 50, "DUMMY", 2)];
 
 let bestCar = cars[0];
 
@@ -65,7 +68,7 @@ function animate(time) {
     }
     carCtx.globalAlpha = 0.2;
     for(let i=0;i<cars.length;i++){
-        cars[i].draw(carCtx,"red");
+        cars[i].draw(carCtx,"black");
     }
     carCtx.globalAlpha = 1;
     bestCar.draw(carCtx, "green",true);
