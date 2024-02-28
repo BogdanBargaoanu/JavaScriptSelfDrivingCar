@@ -129,7 +129,7 @@ class Car {
 
             // Draw the stoplights of the car
             const stoplightWidth = this.width / 4;
-            const stoplightHeight = this.height / 4;
+            const stoplightHeight = this.height / 6;
             const stoplightY = this.height / 2 - stoplightHeight / 2 - 4;
             ctx.fillRect(-this.width / 2 - stoplightWidth / 2 + 4, stoplightY, stoplightWidth, stoplightHeight);
             ctx.fillRect(this.width / 2 - stoplightWidth / 2 - 4, stoplightY, stoplightWidth, stoplightHeight);
