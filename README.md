@@ -27,6 +27,6 @@ git clone https://github.com/BogdanBargaoanu/JavaScriptSelfDrivingCar.git
 2. The sensor data is fed into the neural network.
 3. The neural network processes the data and outputs steering and acceleration values.
 4. Based on the output values, the car adjusts its steering and speed.
-5. The car that travels the furthest without crashing is focused, and it's brain can be saved or discarded.
+5. The car that travels the furthest without crashing is focused, and its brain can be saved or discarded for use in next generations.
   
 ![Acc:](https://github.com/BogdanBargaoanu/JavaScriptSelfDrivingCar/blob/main/resources/topview.png)
