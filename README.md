@@ -30,3 +30,6 @@ git clone https://github.com/BogdanBargaoanu/JavaScriptSelfDrivingCar.git
 5. The car that travels the furthest without crashing is focused, and its brain can be saved or discarded for use in next generations.
   
 ![Acc:](https://github.com/BogdanBargaoanu/JavaScriptSelfDrivingCar/blob/main/resources/topview.png)
+
+## Link to app
+You can view the app [here](https://selfdrivingjs.netlify.app/).
